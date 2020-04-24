@@ -1,0 +1,16 @@
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0005.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0024.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0025.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0027.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0029.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0043.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0061.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0063.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0069.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0081.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0100.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0108.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0120.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0130.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0148.pdb
+/Users/Nan/Desktop/Lab/Karanicolas/PROTAC_DOCKING/scripts/ternary_model_prediction/decoys/000_brd4_crbn_lgs_0001_0157.pdb
