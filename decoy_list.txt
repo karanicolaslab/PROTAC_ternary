@@ -1,0 +1,2 @@
+/path/to/decoy_0.pdb
+/path/to/decoy_1.pdb
