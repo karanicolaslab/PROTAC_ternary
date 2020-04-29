@@ -26,4 +26,5 @@ Rosetta Software Suite; OpenEye Software Suite
 ## Example command
 python2.7 ternary_model_prediction.py -la linker_atom_list.txt -da decoy_atom_list.txt -d docking_decoy.pdb -l linker_conformer.pdb -ld linker_atom_delete.txt -wd decoy_atom_delete.txt -ternary_model default -r rmsd.txt
 
-**python2.7 ternary_model_prediction.py -help # More information of flags
+## More information
+python2.7 ternary_model_prediction.py -h 
