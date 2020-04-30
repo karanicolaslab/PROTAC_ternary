@@ -24,23 +24,23 @@ Rosetta Software Suite; OpenEye Software Suite
 4) decoy_atom_delete.txt & linker_atom_delte.txt: atoms which are repeated in decoy / conformer and need to be deleted (see decoy_atom_delete.txt & linker_atom_delte.txt as examples).
 
 ## Flags information
--da/--decoy_aligment  # take the decoy_atom_list.txt
+-da/--decoy_aligment          # take the decoy_atom_list.txt
 
--la/--linker_aligment # take the linker_atom_list.txt
+-la/--linker_aligment         # take the linker_atom_list.txt
 
--wd/--warheads_delete # take the decoy_atom_delete.txt
+-wd/--warheads_delete         # take the decoy_atom_delete.txt
 
--ld/--linkerd_delete  # take the linker_atom_delete.txt
+-ld/--linkerd_delete          # take the linker_atom_delete.txt
 
--d/--decoy            # take the decoy.pdb or decoy_list.txt
+-d/--decoy                    # take the decoy.pdb or decoy_list.txt
 
--l/--linker           # take the linker.pdb or linker_list.txt
+-l/--linker                   # take the linker.pdb or linker_list.txt
 
--c/--cutoff           # take a float as the cutoff of alignment rmsd, if not applied, the default value(0.4) will be used
+-c/--cutoff                   # take a float as the cutoff of alignment rmsd, if not applied, the default value(0.4) will be used
 
--r/--rmsd             # output file with alignemnet rmsd value(s), if not applied, the default name(rmsd.txt) will be used
+-r/--rmsd                     # output file with alignemnet rmsd value(s), if not applied, the default name(rmsd.txt) will be used
 
--t/--ternary          # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose eitehr default(the output would be ternary0.pdb, etc.) or specify(the output would be decoy_linker.pdb,, etc)
+-t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose eitehr default(the output would be ternary0.pdb, etc.) or specify(the output would be decoy_linker.pdb,, etc)
 
 ## Example command
 python ternary_model_prediction.py -la linker_atom_list.txt -da decoy_atom_list.txt -d docking_decoy.pdb -l linker_conformer.pdb -ld linker_atom_delete.txt -wd decoy_atom_delete.txt -t default -r rmsd.txt
