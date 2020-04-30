@@ -10,7 +10,7 @@ This "ternary_model_prediction.py" script can take protein-protein docking decoy
 ## Dependency
 Rosetta Software Suite; OpenEye Software Suite
 
-**The docking decoys should be genearted with two ligands along with the two proteins using Rosetta.
+**The docking decoys should be genearted with two ligands along with the two proteins using Rosetta.	
 **The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA.
 
 ## Input files
