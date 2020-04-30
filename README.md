@@ -10,9 +10,13 @@ This "ternary_model_prediction.py" script can take protein-protein docking decoy
 ## Dependency
 Rosetta Software Suite; OpenEye Software Suite
 
-**The docking decoys should be genearted with two ligands along with the two proteins using Rosetta.
+*The docking decoys should be genearted with two ligands along with the two proteins using Rosetta, example command:
 
-**The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA
+$ path/to/Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/Rosetta/main/database –s POI_ligand1_E3ligase_ligand2_prepacked.pdb –nstruct 50000 –use_input_sc –spin –dock_pert 5 20 –partners XY_MN –ex1 –ex2aro –extra_res_fa ligand1.params ligand2_params –out:file:scorefile score.sc –score:docking_interface_score 1
+
+(# X and Y are the chain IDs of POI and its ligand1 and M and N are the chain IDs of E3 ligase and its ligand2. The “–partners XY_MN” flag is used to make the ligands only move together with their paired proteins.)
+
+*The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA (linker_conformer.pdb as example)
 
 ## Input files
 1) protein-protein docking decoy(s), can be eitehr a pdb file or a list of pdb structures (see docking_decoy.pdb and decoy_list.txt as example);
@@ -36,14 +40,14 @@ Rosetta Software Suite; OpenEye Software Suite
 
 -l/--linker                   # take the linker.pdb or linker_list.txt
 
--c/--cutoff                   # take a float as the cutoff of alignment rmsd, if not applied, the default value(0.4) will be used
+-c/--cutoff                   # take a float as the cutoff of alignment rmsd, if not applied, the default value (0.4) will be used
 
--r/--rmsd                     # output file with alignemnet rmsd value(s), if not applied, the default name(rmsd.txt) will be used
+-r/--rmsd                     # output file with alignemnet rmsd value(s), if not applied, the default name (rmsd.txt) will be used
 
--t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose eitehr default(the output would be ternary0.pdb, etc.) or specify(the output would be decoy_linker.pdb,, etc)
+-t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose eitehr default (the output would be ternary0.pdb, etc.) or specify (the output would be decoy_linker.pdb,, etc)
 
 ## Example command
-python ternary_model_prediction.py -la linker_atom_list.txt -da decoy_atom_list.txt -d docking_decoy.pdb -l linker_conformer.pdb -ld linker_atom_delete.txt -wd decoy_atom_delete.txt -t default -r rmsd.txt
+$ python ternary_model_prediction.py -la linker_atom_list.txt -da decoy_atom_list.txt -d docking_decoy.pdb -l linker_conformer.pdb -ld linker_atom_delete.txt -wd decoy_atom_delete.txt -t default -r rmsd.txt
 
 ## More information
-python ternary_model_prediction.py -h 
+$ python ternary_model_prediction.py -h 
