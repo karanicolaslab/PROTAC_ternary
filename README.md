@@ -10,8 +10,9 @@ This "ternary_model_prediction.py" script can take protein-protein docking decoy
 ## Dependency
 Rosetta Software Suite; OpenEye Software Suite
 
-**The docking decoys should be genearted with two ligands along with the two proteins using Rosetta.	
-**The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA.
+**The docking decoys should be genearted with two ligands along with the two proteins using Rosetta.
+
+**The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA
 
 ## Input files
 1) protein-protein docking decoy(s), can be eitehr a pdb file or a list of pdb structures (see docking_decoy.pdb and decoy_list.txt as example);
@@ -24,13 +25,21 @@ Rosetta Software Suite; OpenEye Software Suite
 
 ## Flags information
 -da/--decoy_aligment  # take the decoy_atom_list.txt
+
 -la/--linker_aligment # take the linker_atom_list.txt
+
 -wd/--warheads_delete # take the decoy_atom_delete.txt
+
 -ld/--linkerd_delete  # take the linker_atom_delete.txt
+
 -d/--decoy            # take the decoy.pdb or decoy_list.txt
+
 -l/--linker           # take the linker.pdb or linker_list.txt
+
 -c/--cutoff           # take a float as the cutoff of alignment rmsd, if not applied, the default value(0.4) will be used
+
 -r/--rmsd             # output file with alignemnet rmsd value(s), if not applied, the default name(rmsd.txt) will be used
+
 -t/--ternary          # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose eitehr default(the output would be ternary0.pdb, etc.) or specify(the output would be decoy_linker.pdb,, etc)
 
 ## Example command
