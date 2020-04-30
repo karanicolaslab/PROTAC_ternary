@@ -84,10 +84,10 @@ def whole_linker_coors_assignment(linker_dic, atom_number):
 			break
 	return whole_linker_conformer_coors
 
-def apply_transformation ((x_trans, y_trans, z_trans, rot1, rot2, rot3), orig_coors):
+def apply_transformation (xtrans_ytrans_ztrans_rot1_rot2_rot3, orig_coors):
     # transformation will consist of first rotating, then translating
 	new_coors = np.copy(orig_coors)
-
+	xtrans, ytrans, ztrans, rot1, rot2, rot3 = xtrans_ytrans_ztrans_rot1_rot2_rot3
     # consolidate the three rotations into a single transformation matrix
 	rot_mat1 = np.array([[ 1, 0, 0], [ 0, math.cos(rot1), -math.sin(rot1)], [ 0, math.sin(rot1), math.cos(rot1)]])
 	rot_mat2 = np.array([[ math.cos(rot2), 0, math.sin(rot2)], [ 0, 1, 0], [ -math.sin(rot2), 0, math.cos(rot2)]])
@@ -99,16 +99,17 @@ def apply_transformation ((x_trans, y_trans, z_trans, rot1, rot2, rot3), orig_co
 		new_coors[index,:] = rot_mat_all.dot(new_coors[index,:])
 
     # apply the translation
-	new_coors[:,0] += x_trans
-	new_coors[:,1] += y_trans
-	new_coors[:,2] += z_trans
+	new_coors[:,0] += xtrans
+	new_coors[:,1] += ytrans
+	new_coors[:,2] += ztrans
 	return new_coors
 
     
 # note: this is not actually the RMSD, it's the sum of the squares of the error (for speed)
 # note: to get rmsd, divide by number of atoms and then take the square root
-def eval_rmsd_after_transformation((x_trans, y_trans, z_trans, rot1, rot2, rot3), moving_coors, ref_coors):
-	new_coors = apply_transformation((x_trans, y_trans, z_trans, rot1, rot2, rot3), moving_coors)
+def eval_rmsd_after_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_coors, ref_coors):
+	xtrans, ytrans, ztrans, rot1, rot2, rot3 = xtrans_ytrans_ztrans_rot1_rot2_rot3
+	new_coors = apply_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_coors)
 	dist = new_coors - ref_coors
 	dist = dist * dist
 	sq_err = np.sum(dist)
@@ -153,11 +154,12 @@ def protac_dic_combine (warheads_dic, warheads_atom_delete_list, linker_dic, lin
 		key = item[0] + " " + item[1]
 		del linker_dic_inter[key]
 	warheads_dic_inter.update(linker_dic_inter)
+	protac_dic = warheads_dic_inter.copy()
 	for key in warheads_dic_inter:
 		check = (str(key).split()[1]).strip()
 		if check.startswith("H"):
-			del warheads_dic_inter[key]
-	protac_dic = warheads_dic_inter.copy()
+			del protac_dic[key]
+	#protac_dic = warheads_dic_inter.copy()
 	return protac_dic
 
 def protac_dic_renmuber (old_protac_dic):
