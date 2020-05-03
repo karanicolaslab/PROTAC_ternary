@@ -7,9 +7,7 @@ import argparse
 
 # note: open list file to get decoy/conformer list
 def read_file(name_file):
-    """
-    XXX
-    """
+
     name_list = []
     open_file = open(name_file, "r")
     for line in open_file:
@@ -22,9 +20,7 @@ def read_file(name_file):
 
 
 def atom_list_generation(atom_file):
-    """
-    XXX
-    """
+
     atom_list = [line.rstrip('\n').split() for line in open(atom_file)]
     return atom_list
 
@@ -32,9 +28,7 @@ def atom_list_generation(atom_file):
 
 
 def pdb_to_dictionary(pdb_file):
-    """
-    XXX
-    """
+
     pdb_dic = col.OrderedDict()
     f_open = open(pdb_file, "r")
     for line in f_open:
@@ -55,9 +49,7 @@ def pdb_to_dictionary(pdb_file):
 
 
 def pdb_coors_assignment(pdb_list, pdb_dic):
-    """
-    XXX
-    """
+
     pdb_coors = np.empty([6, 3])
     for i in range(len(pdb_list)):
         atom = []
@@ -83,9 +75,7 @@ def pdb_coors_assignment(pdb_list, pdb_dic):
 
 
 def count_line(linker_dic):
-    """
-    XXX
-    """
+
     line_number = 0
     for key in linker_dic:
         line_number += 1
@@ -95,9 +85,7 @@ def count_line(linker_dic):
 
 
 def whole_linker_coors_assignment(linker_dic, atom_number):
-    """
-    XXX
-    """
+
     whole_linker_conformer_coors = np.empty([atom_number, 3])
     n = 0
     for key in linker_dic:
@@ -113,9 +101,7 @@ def whole_linker_coors_assignment(linker_dic, atom_number):
 
 
 def apply_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, orig_coors):
-    """
-    XXX
-    """
+
 # transformation will consist of first rotating, then translating
     new_coors = np.copy(orig_coors)
     xtrans, ytrans, ztrans, rot1, rot2, rot3 = xtrans_ytrans_ztrans_rot1_rot2_rot3
@@ -143,9 +129,7 @@ def apply_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, orig_coors):
 
 
 def eval_rmsd_after_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_coors, ref_coors):
-    """
-    XXX
-    """
+
     xtrans, ytrans, ztrans, rot1, rot2, rot3 = xtrans_ytrans_ztrans_rot1_rot2_rot3
     new_coors = apply_transformation(
         xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_coors)
@@ -158,9 +142,7 @@ def eval_rmsd_after_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_c
 
 
 def linker_conformer_after_rmsd_optimizaton(initial_linker_dic, new_wholelinker_coors_array, linker_atom_number):
-    """
-    XXX
-    """
+
     new_linker_dic = col.OrderedDict()
     m = 0
     for key in initial_linker_dic:
@@ -184,9 +166,7 @@ def linker_conformer_after_rmsd_optimizaton(initial_linker_dic, new_wholelinker_
 
 
 def dic_split(input_dic, split_keyword):
-    """
-    XXX
-    """
+
     new_dic = col.OrderedDict()
     for key in input_dic:
         if input_dic[key].startswith(split_keyword):
@@ -196,9 +176,7 @@ def dic_split(input_dic, split_keyword):
 
 
 def protac_dic_combine(warheads_dic, warheads_atom_delete_list, linker_dic, linker_atom_delete_list):
-    """
-    XXX
-    """
+
     protac_dic = col.OrderedDict()
     warheads_dic_inter = warheads_dic.copy()
     linker_dic_inter = linker_dic.copy()
@@ -218,9 +196,7 @@ def protac_dic_combine(warheads_dic, warheads_atom_delete_list, linker_dic, link
 
 
 def protac_dic_renmuber(old_protac_dic):
-    """
-    XXX
-    """
+
     new_protac_dic = col.OrderedDict()
     i = 1
     for key in old_protac_dic:
@@ -234,9 +210,7 @@ def protac_dic_renmuber(old_protac_dic):
 
 
 def dic_to_pdb(dic, pdb_name):
-    """
-    XXX
-    """
+
     f_open = open(pdb_name, "w")
     for key in dic:
         line = str(dic[key])
