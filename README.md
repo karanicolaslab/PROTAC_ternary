@@ -8,7 +8,7 @@ We would like to develop a computational approach for modeling the ensemble of t
 This `ternary_model_prediction.py` script can take protein-protein docking decoy(s) [IF YOU MAKE SEPERATE DIRECTORY JUST ADD THE PATH HERE] and linker comformer(s) as input [IF YOU MAKE SEPERATE DIRECTORY JUST ADD THE PATH HERE], align linker conformer to the decoy with the atoms you choose, and output ternary structure(s) if the alignment rmsd is less than the cutoff value.
 
 ## Dependency
-[Rosetta] (https://www.rosettacommons.org/software/license-and-download) Software Suite; [OpenEye] (https://www.eyesopen.com/) Software Suite
+[Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; [OpenEye](https://www.eyesopen.com/) Software Suite
 
 * The docking decoys should be genearted with two ligands along with the two proteins using Rosetta, example command:
 
