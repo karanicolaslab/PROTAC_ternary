@@ -5,7 +5,7 @@ PROteolysis TArgeting Chimeras (PROTACs) are heterobifunctional small molecules 
   
 We would like to develop a computational approach for modeling the ensemble of ternary complexes that can be formed by a given POI / PROTAC / E3 ligase. This method involves protein-protein docking to identify complementary binding modes, followed by screening of low-energy linker conformations to determine which candidate binding modes are accessible to a given PROTAC linker.
   
-This `ternary_model_prediction.py` script can take protein-protein docking decoy(s) [please see example in Example folder] and linker comformer(s) as input [please see example in Example folder], align linker conformer to the decoy with the atoms you choose, and output ternary structure(s) if the alignment rmsd is less than the cutoff value.
+This `ternary_model_prediction.py` script can take protein-protein docking decoy(s) (please see example in Example folder) and linker comformer(s) as input (please see example in Example folder), align linker conformer to the decoy with the atoms you choose, and output ternary structure(s) if the alignment rmsd is less than the cutoff value.
 
 ## Dependency
 [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; [OpenEye](https://www.eyesopen.com/) Software Suite
