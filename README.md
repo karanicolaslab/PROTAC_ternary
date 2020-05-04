@@ -5,7 +5,7 @@ PROteolysis TArgeting Chimeras (PROTACs) are heterobifunctional small molecules 
   
 We would like to develop a computational approach for modeling the ensemble of ternary complexes that can be formed by a given POI / PROTAC / E3 ligase. This method involves protein-protein docking to identify complementary binding modes, followed by screening of low-energy linker conformations to determine which candidate binding modes are accessible to a given PROTAC linker.
   
-This `ternary_model_prediction.py` script can take protein-protein docking decoy(s) [IF YOU MAKE SEPERATE DIRECTORY JUST ADD THE PATH HERE] and linker comformer(s) as input [IF YOU MAKE SEPERATE DIRECTORY JUST ADD THE PATH HERE], align linker conformer to the decoy with the atoms you choose, and output ternary structure(s) if the alignment rmsd is less than the cutoff value.
+This `ternary_model_prediction.py` script can take protein-protein docking decoy(s) [please see example in Example folder] and linker comformer(s) as input [please see example in Example folder], align linker conformer to the decoy with the atoms you choose, and output ternary structure(s) if the alignment rmsd is less than the cutoff value.
 
 ## Dependency
 [Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; [OpenEye](https://www.eyesopen.com/) Software Suite
@@ -21,13 +21,13 @@ $ path/to/Rosetta/main/source/bin/docking_protocol.linuxgccelease –database pa
 * The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA (`linker_conformer.pdb` as example)
 
 ## Input files
-1) protein-protein docking decoy(s), can be eitehr a pdb file or a list of pdb structures (see `docking_decoy.pdb` and `decoy_list.txt` as example);
+1) protein-protein docking decoy(s), can be eitehr a pdb file or a list of pdb structures (see `docking_decoy.pdb` and `decoy_list.txt` as example in Example folder);
 
-2) linker conformers, can be either a pdb file or a list of pdb structures (see `linker_conformer.pdb` and `linker_list.txt` as example);
+2) linker conformers, can be either a pdb file or a list of pdb structures (see `linker_conformer.pdb` and `linker_list.txt` as example in Example folder);
 
-3) `decoy_atom_list.txt` & `linker_atom_list.txt`: atoms would be used to do the alignment (see `decoy_atom_list.txt` & `linker_atom_list.txt` as examples);
+3) `decoy_atom_list.txt` & `linker_atom_list.txt`: atoms would be used to do the alignment (see `decoy_atom_list.txt` & `linker_atom_list.txt` as examples in Example folder);
 
-4) `decoy_atom_delete.txt` & `linker_atom_delte.txt`: atoms which are repeated in decoy / conformer and need to be deleted (see `decoy_atom_delete.txt` & `linker_atom_delte.txt` as examples).
+4) `decoy_atom_delete.txt` & `linker_atom_delte.txt`: atoms which are repeated in decoy / conformer and need to be deleted (see `decoy_atom_delete.txt` & `linker_atom_delte.txt` as examples in Example folder).
 
 ## Flags information
 ```
