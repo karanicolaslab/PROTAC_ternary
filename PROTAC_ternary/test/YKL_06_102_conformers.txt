@@ -1,0 +1,2 @@
+YKL_06_102_conformer_393.pdb
+YKL_06_102_conformer_881.pdb
