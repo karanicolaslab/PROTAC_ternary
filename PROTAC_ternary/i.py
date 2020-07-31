@@ -1,7 +1,6 @@
 import numpy as np
 
 from Args import args
-from Transformation import apply_transformation
 
 
 import scipy.optimize
@@ -74,16 +73,33 @@ def pdb_coors_assignment(pdb_list, pdb_dic):
 
 
 
+def apply_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, orig_coors):
+    """Take in original coordinates and transformation vetors, and output new coordinates after transformation."""
+    # transformation will consist of first rotating, then translating
+    new_coors = np.copy(orig_coors)
+    xtrans, ytrans, ztrans, rot1, rot2, rot3 = xtrans_ytrans_ztrans_rot1_rot2_rot3
+    # consolidate the three rotations into a single transformation matrix
+    rot_mat1 = np.array([[1, 0, 0], [0, math.cos(
+        rot1), -math.sin(rot1)], [0, math.sin(rot1), math.cos(rot1)]])
+    rot_mat2 = np.array([[math.cos(rot2), 0, math.sin(rot2)], [
+                        0, 1, 0], [-math.sin(rot2), 0, math.cos(rot2)]])
+    rot_mat3 = np.array([[math.cos(rot3), -math.sin(rot3), 0],
+                         [math.sin(rot3), math.cos(rot3), 0], [0, 0, 1]])
+    rot_mat_all = np.dot(np.dot(rot_mat1, rot_mat2), rot_mat3)
+    # apply the rotation matrix
+    for index in range(len(new_coors[:, 0])):
+        new_coors[index, :] = rot_mat_all.dot(new_coors[index, :])
+    # apply the translation
+    new_coors[:, 0] += xtrans
+    new_coors[:, 1] += ytrans
+    new_coors[:, 2] += ztrans
+    return new_coors
 
 def eval_rmsd_after_transformation(xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_coors, ref_coors):
-    """
-        Take in two groups of coordinates, do transformation for one of them, 
-        and calculate the sum of the squares of the error as output.
-    """
+    """Take in two groups of coordinates, do transformation for one of them, and calculate the sum of the squares of the error as output."""
     xtrans, ytrans, ztrans, rot1, rot2, rot3 = xtrans_ytrans_ztrans_rot1_rot2_rot3
-    new_coors = apply_transformation(rot1, rot2, rot3,
-                                     xtrans, ytrans, ztrans,
-                                     moving_coors)
+    new_coors = apply_transformation(
+        xtrans_ytrans_ztrans_rot1_rot2_rot3, moving_coors)
     dist = new_coors - ref_coors
     dist = dist * dist
     sq_err = np.sum(dist)
@@ -135,25 +151,23 @@ if __name__ == "__main__":
         l_coords = linker_coords[l_name]
         natoms = len(l_coords[:, 0])
 
+
         res = scipy.optimize.minimize(eval_rmsd_after_transformation,
                                      (0., 0., 0., 0., 0., 0.),
-                                     args=(d_coords, l_coords),
+                                     args=(l_coords, d_coords),
                                      method='Powell')
 
-        rot1, rot2, rot3 = res.x[3], res.x[4], res.x[5]
-        tr_x, tr_y, tr_z = res.x[0], res.x[1], res.x[2]
-
-        print(d_name, l_name, rot1, rot2, rot3, tr_x, tr_y, tr_z)
-
-
-    #     new_l_coords = apply_transformation(rot1, rot2, rot3, tr_x, tr_y, tr_z, l_coords)
+        new_l_coords = apply_transformation((res.x[0], res.x[1], res.x[2], res.x[3], res.x[4], res.x[5]), l_coords)
 
         
-    #     rmsd_value = eval_rmsd_after_transformation((0., 0., 0., 0., 0., 0.),
-    #                                                 new_l_coords,
-    #                                                 d_coords)
+        rmsd_value = eval_rmsd_after_transformation((0., 0., 0., 0., 0., 0.),
+                                                    new_l_coords,
+                                                    d_coords)
         
-    #     rmsd_value = math.sqrt(rmsd_value/natoms)
+        rmsd_value = math.sqrt(rmsd_value/natoms)
+        print(rmsd_value)
+        break
+
 
     #     write_line = f"{d_name} {l_name} {str(rmsd_value)}"
 
