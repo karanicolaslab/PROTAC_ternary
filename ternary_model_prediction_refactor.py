@@ -20,9 +20,9 @@ if __name__ == "__main__":
     # target atoms for alignment
     linker_atoms = read_atom_file(linker_atoms)
     # label of decoys overlapped atoms
-    delete_decoy_atoms = read_atom_file(delete_decoy_atoms)
+    delete_decoy_atoms = [a[0] for a in read_atom_file(delete_decoy_atoms)]
     # label of linker overlapped atoms
-    delete_linker_atoms = read_atom_file(delete_linker_atoms)
+    delete_linker_atoms = [a[0] for a in read_atom_file(delete_linker_atoms)]
 
     fwr = open(arguments.rmsd, "w")
 
@@ -32,20 +32,16 @@ if __name__ == "__main__":
         decoy = PDBContainer(d)
         linker = PDBContainer(l)
 
-        decoy_atoms_ids = [decoy.atom_ids[idx] for idx in decoy_atoms]
-        linker_atoms_ids = [linker.atom_ids[idx] for idx in linker_atoms]
-        atoms_ids = list(zip(linker_atoms_ids, decoy_atoms_ids))
+        rmsd = linker.align(decoy, targ_atoms=linker_atoms, ref_atoms=decoy_atoms)
 
-        rmsd = linker.align(decoy, atoms_ids)
-
-        decoy.delete(delete_decoy_atoms)
-        linker.delete(delete_linker_atoms)
+        decoy.delete_atoms(delete_decoy_atoms)
+        linker.delete_atoms(delete_linker_atoms)
 
         decoy.merge(linker)
         decoy.delete_hetHs()
 
-        decoy_resn = [s.split(" ")[0] for s in decoy_atoms]
-        linker_resn = [s.split(" ")[0] for s in linker_atoms]
+        decoy_resn = [ss.split(" ")[0] for s in decoy_atoms for ss in s]
+        linker_resn = [ss.split(" ")[0] for s in linker_atoms for ss in s]
 
         for resn in set(decoy_resn + linker_resn):
             decoy.rename(resn, "LG1", "X", 1)
@@ -58,7 +54,6 @@ if __name__ == "__main__":
                 dname = d.split("/")[-1].split(".")[0]
                 lname = l.split("/")[-1].split(".")[0]
                 out_file = dname + "_" + lname + ".pdb"
-
             decoy.save(out_file)
 
         fwr.write(" ".join([d, l, str(rmsd)]) + "\n")

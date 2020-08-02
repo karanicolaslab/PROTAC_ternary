@@ -73,6 +73,6 @@ def args():
 
 def read_atom_file(file):
     atoms = [line.rstrip('\n').split() for line in open(file,"r")]
-    atoms = [a[0] + " " + aa for a in atoms for aa in a[1::]]
+    atoms = [[a[0] + " " + aa for aa in a[1::]] for a in atoms ]
 
     return atoms
