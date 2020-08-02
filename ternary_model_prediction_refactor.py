@@ -47,7 +47,7 @@ if __name__ == "__main__":
         decoy_resn = [s.split(" ")[0] for s in decoy_atoms]
         linker_resn = [s.split(" ")[0] for s in linker_atoms]
 
-        for resn in set(decoy_resn+linker_resn):
+        for resn in set(decoy_resn + linker_resn):
             decoy.rename(resn, "LG1", "X", 1)
 
         if rmsd < arguments.cutoff:
