@@ -1,0 +1,16 @@
+test/CDK6_CRBN_dock_215_0018.pdb test/YKL_06_102_conformer_393.pdb 1.788451400145463
+test/CDK6_CRBN_dock_215_0018.pdb test/YKL_06_102_conformer_881.pdb 1.6097915663207667
+test/CDK6_CRBN_dock_216_0007.pdb test/YKL_06_102_conformer_393.pdb 3.5816384314576553
+test/CDK6_CRBN_dock_216_0007.pdb test/YKL_06_102_conformer_881.pdb 3.9409163745528657
+test/CDK6_CRBN_dock_343_0036.pdb test/YKL_06_102_conformer_393.pdb 1.4587007527136735
+test/CDK6_CRBN_dock_343_0036.pdb test/YKL_06_102_conformer_881.pdb 0.9572802954750284
+test/CDK6_CRBN_dock_598_0044.pdb test/YKL_06_102_conformer_393.pdb 7.725820109103118
+test/CDK6_CRBN_dock_598_0044.pdb test/YKL_06_102_conformer_881.pdb 8.10833469091195
+test/CDK6_CRBN_dock_600_0026.pdb test/YKL_06_102_conformer_393.pdb 3.54598891846323
+test/CDK6_CRBN_dock_600_0026.pdb test/YKL_06_102_conformer_881.pdb 3.9157609378273333
+test/CDK6_CRBN_dock_845_0044.pdb test/YKL_06_102_conformer_393.pdb 5.5536994064051
+test/CDK6_CRBN_dock_845_0044.pdb test/YKL_06_102_conformer_881.pdb 5.811270002599252
+test/CDK6_CRBN_dock_850_0021.pdb test/YKL_06_102_conformer_393.pdb 1.5682956042037075
+test/CDK6_CRBN_dock_850_0021.pdb test/YKL_06_102_conformer_881.pdb 1.6145282045986427
+test/CDK6_CRBN_dock_997_0041.pdb test/YKL_06_102_conformer_393.pdb 1.5553150576447767
+test/CDK6_CRBN_dock_997_0041.pdb test/YKL_06_102_conformer_881.pdb 0.4721398358740816

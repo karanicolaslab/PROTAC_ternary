@@ -327,12 +327,13 @@ def main():
 			linker_atom_alignment_list, linker_dic)
 		array_item = [linker_name, orig_linker_coors]
 		linker_array.append(array_item)
-	# print(str(len(linker_list)) +
-		  # " linker conformer(s) has/have been passed to the system.")
+
+	# # print(str(len(linker_list)) +
+	# 	  # " linker conformer(s) has/have been passed to the system.")
 
 
-	# list_to_write = []
-	# ternary_model_number = 0
+	list_to_write = []
+	ternary_model_number = 0
 	for i in range(len(decoy_array)):
 		decoy_pdb = decoy_array[i][0]
 		decoy_wholefile_dic = decoy_file_array[i][1]
@@ -353,54 +354,52 @@ def main():
 			rmsd_value = math.sqrt(eval_rmsd_after_transformation(
 				(0., 0., 0., 0., 0., 0.), new_linker_coors, docking_decoy_coors)/natoms)
 
-			print(rmsd_value)
+			rmsd_line = "Final RMSD between " + decoy_pdb + " and " + \
+				linker_conformer_pdb + " is " + str(rmsd_value) + "\n"
+			write_line = decoy_pdb + " " + \
+				linker_conformer_pdb + " " + str(rmsd_value) + "\n"
 
-			break
-		break
+			list_to_write.append(write_line)
 
-			# rmsd_line = "Final RMSD between " + decoy_pdb + " and " + \
-				# linker_conformer_pdb + " is " + str(rmsd_value) + "\n"
-	# 		write_line = decoy_pdb + " " + \
-	# 			linker_conformer_pdb + " " + str(rmsd_value) + "\n"
+			if (rmsd_value > cut_off or ternary_model_name == ""):
+				pass
+			else:
+				if (ternary_model_name == "default"):
+					ternary_model = "ternary" + \
+						str(ternary_model_number) + ".pdb"
+				else:
+					ternary_model = (decoy_pdb.split(
+						"/")[-1]).split(".")[0] + "_" + linker_conformer_pdb.split("/")[-1]
 
-	# 		list_to_write.append(write_line)
+				line_number = count_line(linker_wholefile_dic)
+				orig_whole_linker_coors = whole_linker_coors_assignment(
+					linker_wholefile_dic, line_number)
 
-	# 		if (rmsd_value > cut_off or ternary_model_name == ""):
-	# 			pass
-	# 		else:
-	# 			if (ternary_model_name == "default"):
-	# 				ternary_model = "ternary" + \
-	# 					str(ternary_model_number) + ".pdb"
-	# 			else:
-	# 				ternary_model = (decoy_pdb.split(
-	# 					"/")[-1]).split(".")[0] + "_" + linker_conformer_pdb.split("/")[-1]
+				new_whole_linker_coors = apply_transformation(
+					(res.x[0], res.x[1], res.x[2], res.x[3], res.x[4], res.x[5]), orig_whole_linker_coors)
 
-	# 			line_number = count_line(linker_wholefile_dic)
-	# 			orig_whole_linker_coors = whole_linker_coors_assignment(
-	# 				linker_wholefile_dic, line_number)
-	# 			new_whole_linker_coors = apply_transformation(
-	# 				(res.x[0], res.x[1], res.x[2], res.x[3], res.x[4], res.x[5]), orig_whole_linker_coors)
-	# 			new_linker_wholefile_dic = linker_conformer_after_rmsd_optimizaton(
-	# 				linker_wholefile_dic, new_whole_linker_coors, line_number)
-	# 			initial_protac_dic = protac_dic_combine(
-	# 				decoy_warheads_dic, warheads_atom_delete_list, new_linker_wholefile_dic, linker_atom_delete_list)
-	# 			renumber_protac_dic = protac_dic_renmuber(initial_protac_dic)
-	# 			ternary_model_dic = renumber_protac_dic.copy()
-	# 			ternary_model_dic.update(decoy_pdb_dic)
 
-	# 			dic_to_pdb(ternary_model_dic, ternary_model)
-	# 			ternary_model_number += 1
+				new_linker_wholefile_dic = linker_conformer_after_rmsd_optimizaton(
+					linker_wholefile_dic, new_whole_linker_coors, line_number)
+				initial_protac_dic = protac_dic_combine(
+					decoy_warheads_dic, warheads_atom_delete_list, new_linker_wholefile_dic, linker_atom_delete_list)
+				renumber_protac_dic = protac_dic_renmuber(initial_protac_dic)
+				ternary_model_dic = renumber_protac_dic.copy()
+				ternary_model_dic.update(decoy_pdb_dic)
 
-	# if (rmsd_file == "none"):
-	# 	list_to_write = []
-	# else:
-	# 	f_rmsd = open(rmsd_file, "w")
-	# 	for item in list_to_write:
-	# 		f_rmsd.write(item)
-	# 	f_rmsd.close()
+				dic_to_pdb(ternary_model_dic, ternary_model)
+				ternary_model_number += 1
 
-	# print(str(ternary_model_number) +
-	# 	  " ternary model(s) has/have been generated.")
+	if (rmsd_file == "none"):
+		list_to_write = []
+	else:
+		f_rmsd = open(rmsd_file, "w")
+		for item in list_to_write:
+			f_rmsd.write(item)
+		f_rmsd.close()
+
+	print(str(ternary_model_number) +
+		  " ternary model(s) has/have been generated.")
 
 
 main()
