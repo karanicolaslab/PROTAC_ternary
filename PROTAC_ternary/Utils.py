@@ -7,7 +7,7 @@ def args():
                                        conformer(s) and ouputs ternary model(s) 
                                        when alignment RMSD is less than the 
                                        cutoff""")
-    
+
     parser.add_argument("-da", 
                         "--decoy_alignment",
                         required=True,
@@ -21,15 +21,13 @@ def args():
                         "--decoy",
                         nargs="+",
                         required=True,
-                        help="""Decoys, either one *.pdb or a file with 
-                                multiple lines: /path/to/decoy.pdb""")
+                        help="""Decoys  *.pdb files""")
 
     parser.add_argument("-l",
                         "--linker",
                         nargs="+",
                         required=True,
-                        help="""Linker conformers, either one *.pdb or a file 
-                                with multiple lines: /path/to/linker.pdb""")
+                        help="""Linker conformers *.pdb files""")
 
     parser.add_argument("-c",
                         "--cutoff",
@@ -43,10 +41,10 @@ def args():
                         help="""Output rmsd: rmsd values of each decoy and 
                         linker conformer with rmsd.txt as default name""")
 
-    parser.add_argument("-t", 
+    parser.add_argument("-t",
                         "--ternary",
-                        default="",
-                        choices=["default", "specify", ""],
+                        default="default",
+                        choices=["default", "specify"],
                         required=True,
                         help="""Output ternary: if not applied, no output 
                                 ternary; if applied, choose either 'default' 
@@ -68,6 +66,10 @@ def args():
                         version="Version 1.0")
 
     args = parser.parse_args()
+
+    if args.cutoff < 0.0:
+        print("Error: cut_off must be positive.")
+
     return args
 
 
