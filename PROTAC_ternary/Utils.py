@@ -8,7 +8,7 @@ def args():
                                        when alignment RMSD is less than the 
                                        cutoff""")
 
-    parser.add_argument("-da", 
+    parser.add_argument("-da",
                         "--decoy_alignment",
                         required=True,
                         help="""Text file of decoy atoms for the alignment""")
@@ -21,13 +21,13 @@ def args():
                         "--decoy",
                         nargs="+",
                         required=True,
-                        help="""Decoys  *.pdb files""")
+                        help="""Decoys, one or several PDB files""")
 
     parser.add_argument("-l",
                         "--linker",
                         nargs="+",
                         required=True,
-                        help="""Linker conformers *.pdb files""")
+                        help="""Linker, one or several PDB files""")
 
     parser.add_argument("-c",
                         "--cutoff",
@@ -45,7 +45,6 @@ def args():
                         "--ternary",
                         default="default",
                         choices=["default", "specify"],
-                        required=True,
                         help="""Output ternary: if not applied, no output 
                                 ternary; if applied, choose either 'default' 
                                 or 'specify'""")
