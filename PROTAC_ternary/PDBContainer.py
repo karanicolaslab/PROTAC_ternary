@@ -100,7 +100,7 @@ class PDBContainer:
             atom_labels (list): PDB labels of interested atoms
 
         Returns:
-            list: coordinates of given atoms as nested list of X,Y,Z 
+            list: coordinates of given atoms as nested list of X,Y,Z
             coordinates
         """
         x_coords, y_coords, z_coords = [], [], []
