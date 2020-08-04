@@ -1,8 +1,0 @@
-CDK6_CRBN_dock_215_0018.pdb
-CDK6_CRBN_dock_216_0007.pdb
-CDK6_CRBN_dock_343_0036.pdb
-CDK6_CRBN_dock_598_0044.pdb
-CDK6_CRBN_dock_600_0026.pdb
-CDK6_CRBN_dock_845_0044.pdb
-CDK6_CRBN_dock_850_0021.pdb
-CDK6_CRBN_dock_997_0041.pdb

@@ -61,4 +61,4 @@ if __name__ == "__main__":
 
         fwr.close()
 
-    # print(str(ternary_idx) + " ternary model(s) has/have been generated.")
+    print(str(ternary_idx) + " ternary model(s) has/have been generated.")
