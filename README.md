@@ -13,17 +13,18 @@ This `ternary_model_prediction.py` script can take protein-protein docking decoy
 * The docking decoys should be genearted with two ligands along with the two proteins using Rosetta, example command:
 
 ```
-$ path/to/Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/Rosetta/main/database \
-                                                                  –s POI_ligand1_E3ligase_ligand2_prepacked.pdb \
-                                                                  –nstruct 50000 \
-                                                                  –use_input_sc \
-                                                                  –spin \
-                                                                  –dock_pert 5 20 \
-                                                                  –partners XY_MN \
-                                                                  –ex1 \
-                                                                  –ex2aro \
-                                                                  –extra_res_fa ligand1.params ligand2_params \
-                                                                  –out:file:scorefile score.sc –score:docking_interface_score 1
+$ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/Rosetta/main/database \
+                                                            –s POI_ligand1_E3ligase_ligand2_prepacked.pdb \
+                                                            –nstruct 50000 \
+                                                            –s POI_ligand1_E3ligase_ligand2_prepacked.pdb \
+                                                            –use_input_sc \
+                                                            –spin \
+                                                            –dock_pert 5 20 \
+                                                            –partners XY_MN \
+                                                            –ex1 \
+                                                            –ex2aro \
+                                                            –extra_res_fa ligand1.params ligand2_params \
+                                                            –out:file:scorefile score.sc –score:docking_interface_score 1
 ```
 
 (# X and Y are the chain IDs of POI and its ligand1 and M and N are the chain IDs of E3 ligase and its ligand2. The `–partners XY_MN` flag is used to make the ligands only move together with their paired proteins.)
