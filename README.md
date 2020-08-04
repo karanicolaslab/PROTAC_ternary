@@ -35,8 +35,8 @@ $ path/to/Rosetta/main/source/bin/docking_protocol.linuxgccelease –database pa
 -la/--linker_aligment         # take the linker_atom_list.txt
 -wd/--warheads_delete         # take the decoy_atom_delete.txt
 -ld/--linkerd_delete          # take the linker_atom_delete.txt
--d/--decoy                    # take the decoy.pdb or decoy_list.txt
--l/--linker                   # take the linker.pdb or linker_list.txt
+-d/--decoy                    # take the decoy pdbs
+-l/--linker                   # take the linker pdbs
 -c/--cutoff                   # take a float as the cutoff of alignment rmsd, if not applied, the default value (0.4) will be used
 -r/--rmsd                     # output file with alignemnet rmsd value(s), if not applied, the default name (rmsd.txt) will be used
 -t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose either default (the output would be ternary0.pdb, etc.) or specify (the output would be decoy_linker.pdb,, etc)
