@@ -32,9 +32,9 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 * The linker conformers should have overlap part at each end with the two ligands in the decoy using OMEGA (`linker_conformer.pdb` as example)
 
 ## Input files
-1) protein-protein docking decoy(s), can be either a pdb file or a list of pdb structures (see `docking_decoy.pdb` and `decoy_list.txt` as example in Example folder);
+1) protein-protein docking decoy(s), can be either a one pdb file or multiple (see `docking_decoy.pdb` as example in Example folder);
 
-2) linker conformers, can be either a pdb file or a list of pdb structures (see `linker_conformer.pdb` and `linker_list.txt` as example in Example folder);
+2) linker conformers, can be either a one pdb file or multiple (see `linker_conformer.pdb` as example in Example folder);
 
 3) `decoy_atom_list.txt` & `linker_atom_list.txt`: atoms would be used to do the alignment (see `decoy_atom_list.txt` & `linker_atom_list.txt` as examples in Example folder);
 
