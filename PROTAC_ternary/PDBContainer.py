@@ -219,7 +219,6 @@ class PDBContainer:
         for bond in compound.structure.GetBonds():
             bgn = atoms_ids[bond.GetBeginAtomIdx()]
             end = atoms_ids[bond.GetEndAtomIdx()]
-            print(bgn, end)
             structure.AddBond(bgn, end, bond.GetBondType())
 
         self.structure = structure.GetMol()
