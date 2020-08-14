@@ -216,10 +216,13 @@ class PDBContainer:
             atoms_ids[i] = idx
             coords[idx] = compound.structure.GetConformer(0).GetAtomPosition(i)
 
-        for bond in compound.structure.GetBonds():
-            bgn = atoms_ids[bond.GetBeginAtomIdx()]
-            end = atoms_ids[bond.GetEndAtomIdx()]
-            structure.AddBond(bgn, end, bond.GetBondType())
+        # Because the output is PDB without any CONNECT lines
+        # we can skip adding of bonds
+
+        # for bond in compound.structure.GetBonds():
+        #     bgn = atoms_ids[bond.GetBeginAtomIdx()]
+        #     end = atoms_ids[bond.GetEndAtomIdx()]
+        #     structure.AddBond(bgn, end, bond.GetBondType())
 
         self.structure = structure.GetMol()
 
