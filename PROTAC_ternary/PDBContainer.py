@@ -217,8 +217,9 @@ class PDBContainer:
             coords[idx] = compound.structure.GetConformer(0).GetAtomPosition(i)
 
         for bond in compound.structure.GetBonds():
-            bgn = bond.GetBeginAtomIdx()
-            end = bond.GetEndAtomIdx()
+            bgn = atoms_ids[bond.GetBeginAtomIdx()]
+            end = atoms_ids[bond.GetEndAtomIdx()]
+            print(bgn, end)
             structure.AddBond(bgn, end, bond.GetBondType())
 
         self.structure = structure.GetMol()
