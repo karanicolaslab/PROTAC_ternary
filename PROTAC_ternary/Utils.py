@@ -63,6 +63,12 @@ def args():
                         default="",
                         help="""Linker atoms to be deleted""")
 
+    parser.add_argument("-ai",
+                        "--alignment_iterations",
+                        type=int,
+                        default=10,
+                        help="""Number of iterations used for alignment""")
+
     parser.add_argument("-v",
                         "--version",
                         action="version",

@@ -5,6 +5,7 @@ def make_ternary_complex(decoy_file,
                          linker_file,
                          decoy_atoms,
                          linker_atoms,
+                         aln_iters,
                          delete_decoy_atoms=[],
                          delete_linker_atoms=[]):
     """The main function for building ternary complex
@@ -33,7 +34,10 @@ def make_ternary_complex(decoy_file,
     decoy = PDBContainer(decoy_file)
     linker = PDBContainer(linker_file)
 
-    rmsd = linker.align(decoy, targ_atoms=linker_atoms, ref_atoms=decoy_atoms)
+    rmsd = linker.align(decoy, 
+                        targ_atoms=linker_atoms,
+                        ref_atoms=decoy_atoms,
+                        aln_iters=aln_iters)
 
     if len(delete_decoy_atoms) != 0:
         decoy.delete_atoms(delete_decoy_atoms)

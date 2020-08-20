@@ -114,7 +114,7 @@ class PDBContainer:
 
         return x_coords, y_coords, z_coords
 
-    def align(self, reference, targ_atoms, ref_atoms, max_iters=50):
+    def align(self, reference, targ_atoms, ref_atoms, aln_iters):
         """Align structure against reference
 
         Args:
@@ -173,7 +173,7 @@ class PDBContainer:
         rmsd = Chem.rdMolAlign.AlignMol(self.structure,
                                         reference.structure,
                                         atomMap=atom_map,
-                                        maxIters=max_iters)
+                                        maxIters=aln_iters)
 
         self.delete_atoms(targ_dummy_atom_ids)
         reference.delete_atoms(ref_dummy_atom_ids)

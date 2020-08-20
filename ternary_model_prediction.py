@@ -16,6 +16,7 @@ if __name__ == "__main__":
     rmsd_filename = arguments.rmsd
     write_complex_mode = arguments.ternary
     cutoff = arguments.cutoff
+    aln_iters = arguments.alignment_iterations
 
     ref_algn_atoms = read_atom_file(d_alignment)  # reference atoms of decoys
     mob_algn_atoms = read_atom_file(l_alignment)  # mobile atoms of linkers
@@ -40,6 +41,7 @@ if __name__ == "__main__":
             rmsd, struct = make_ternary_complex(d, l,
                                                 ref_algn_atoms,
                                                 mob_algn_atoms,
+                                                aln_iters,
                                                 delete_decoy_atoms,
                                                 delete_linker_atoms)
 
