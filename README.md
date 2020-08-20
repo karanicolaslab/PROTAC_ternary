@@ -51,6 +51,7 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 -c/--cutoff                   # take a float as the cutoff of alignment rmsd, if not applied, the default value (0.4) will be used
 -r/--rmsd                     # output file with alignemnet rmsd value(s), if not applied, the default name (rmsd.txt) will be used
 -t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose either default (the output would be ternary0.pdb, etc.) or specify (the output would be decoy_linker.pdb,, etc)
+-ai/--alignment_iterations    # number of rounds for alignment
 ```
 
 ## Example command
