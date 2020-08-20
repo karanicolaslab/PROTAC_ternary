@@ -63,6 +63,7 @@ $ python ternary_model_prediction.py -la linker_atom_list.txt \
                                      -wd decoy_atom_delete.txt \
                                      -t default \
                                      -r rmsd.txt
+                                     -ai 50
 ```
 
 ## More information
