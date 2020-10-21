@@ -1,2 +1,0 @@
-/path/to/conformer_0.pdb
-/path/to/conformer_1.pdb
