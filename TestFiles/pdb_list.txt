@@ -1,0 +1,7 @@
+CDK6_CRBN_dock_105_0032_BSJ_03_123_conformer_517.pdb
+CDK6_CRBN_dock_111_0039_BSJ_03_123_conformer_796.pdb
+CDK6_CRBN_dock_126_0029_BSJ_03_123_conformer_173.pdb
+CDK6_CRBN_dock_995_0016_BSJ_03_123_conformer_879.pdb
+CDK6_CRBN_dock_999_0007_BSJ_03_123_conformer_711.pdb
+TRN.pdb
+TRN_0001.pdb

@@ -1,0 +1,5 @@
+-s CDK4-YKL_06-ternary176.pdb
+-extra_res_fa TRN.params 
+-load_PDB_components False
+-run:min_type lbfgs_armijo_nonmonotone
+-run:min_tolerance 0.001
