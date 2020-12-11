@@ -46,7 +46,7 @@ def make_ternary_complex(decoy_file,
         linker.delete_atoms(delete_linker_atoms)
 
     decoy.merge(linker)
-    decoy.delete_hetHs()
+#    decoy.delete_hetHs()
 
     decoy_resn = [ss.split(" ")[0] for s in decoy_atoms for ss in s]
     linker_resn = [ss.split(" ")[0] for s in linker_atoms for ss in s]

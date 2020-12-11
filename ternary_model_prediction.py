@@ -1,14 +1,18 @@
 """Wrapper code for make_ternary_complex function
 """
+
+from datetime import datetime
+startTime = datetime.now()
 from itertools import product
 from PROTAC_ternary import make_ternary_complex
 from PROTAC_ternary import args, read_atom_file
 
+
 if __name__ == "__main__":
     # get input arguments and assign to variables
     arguments = args()
-    decoys = arguments.decoy
-    linkers = arguments.linker
+    decoys = arguments.decoy #replace with read file etc.
+    linkers = arguments.linker #replace with read file etc. 
     d_alignment = arguments.decoy_alignment
     l_alignment = arguments.linker_alignment
     d_remove = arguments.warheads_delete
@@ -30,7 +34,7 @@ if __name__ == "__main__":
         delete_linker_atoms = [a[0] for a in read_atom_file(l_remove)]
     else:
         delete_linker_atoms = []
-
+	#will append rmsd file - no more overwrite
     with open(rmsd_filename, "w") as fwr:
         ternary_idx = 0
 
@@ -64,3 +68,5 @@ if __name__ == "__main__":
         fwr.close()
 
     print(str(ternary_idx) + " ternary model(s) has/have been generated.")
+
+print(datetime.now() - startTime)

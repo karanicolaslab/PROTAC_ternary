@@ -8,7 +8,7 @@ We would like to develop a computational approach for modeling the ensemble of t
 This `ternary_model_prediction.py` script can take protein-protein docking decoy(s) (please see example in Example folder) and linker comformer(s) as input (please see example in Example folder), align linker conformer to the decoy with the atoms you choose, and output ternary structure(s) if the alignment rmsd is less than the cutoff value.
 
 ## Dependency
-[Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; [OpenEye](https://www.eyesopen.com/) Software Suite
+[Rosetta](https://www.rosettacommons.org/software/license-and-download) Software Suite; [OpenEye](https://www.eyesopen.com/) Software Suite; [RDKit](www.rdkit.org) Software Suite
 
 * The docking decoys should be genearted with two ligands along with the two proteins using Rosetta, example command:
 
@@ -40,6 +40,8 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 
 4) `decoy_atom_delete.txt` & `linker_atom_delte.txt`: atoms which are repeated in decoy / conformer and need to be deleted (see `decoy_atom_delete.txt` & `linker_atom_delte.txt` as examples in Example folder).
 
+5) `the flags -d/-dl and -l/-ll cannot not both be used in a single command for decoy or linker files; a single decoy can be modeling against a list of linker conformers (-d/-ll) or a list of decoys can be modeled against single linker conformer (-dl/-l) or single decoy and linker (-d/-l) or lists of both (-dl/-ll) can be modeled`
+
 ## Flags information
 ```
 -da/--decoy_aligment          # take the decoy_atom_list.txt
@@ -47,7 +49,9 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 -wd/--warheads_delete         # take the decoy_atom_delete.txt
 -ld/--linkerd_delete          # take the linker_atom_delete.txt
 -d/--decoy                    # take the decoy pdbs
+-d/--decoy_list		      # take the list of decoy pdbs in decoy_list.txt
 -l/--linker                   # take the linker pdbs
+-ll/--linker_list             # take the list of linker conformations in linker_list.txt
 -c/--cutoff                   # take a float as the cutoff of alignment rmsd, if not applied, the default value (0.4) will be used
 -r/--rmsd                     # output file with alignemnet rmsd value(s), if not applied, the default name (rmsd.txt) will be used
 -t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose either default (the output would be ternary0.pdb, etc.) or specify (the output would be decoy_linker.pdb,, etc)
@@ -58,8 +62,10 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 ```
 $ python ternary_model_prediction.py -la linker_atom_list.txt \
                                      -da decoy_atom_list.txt \
-                                     -d docking_decoy.pdb \
-                                     -l linker_conformer.pdb \
+                                     -dl decoy_list.xt \ 
+                                     -ll linker_list.txt \
+				     -d  decoy_model.pdb \
+				     -l  linker_conf.pdb \ 
                                      -ld linker_atom_delete.txt \
                                      -wd decoy_atom_delete.txt \
                                      -t default \
@@ -68,4 +74,5 @@ $ python ternary_model_prediction.py -la linker_atom_list.txt \
 ```
 
 ## More information
-`$ python ternary_model_prediction.py -h` 
+`$ python ternary_model_prediction.py -h`
+

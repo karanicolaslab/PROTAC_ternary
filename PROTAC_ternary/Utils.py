@@ -24,14 +24,19 @@ def args():
     parser.add_argument("-d",
                         "--decoy",
                         nargs="+",
-                        required=True,
                         help="""Decoys, one or several PDB files""")
+    parser.add_argument("-dl",
+			"--decoy_list",
+			help="""Decoy PDB files listed in a single txt file in PWD""") 
 
     parser.add_argument("-l",
                         "--linker",
                         nargs="+",
-                        required=True,
                         help="""Linker, one or several PDB files""")
+
+    parser.add_argument("-ll",
+			"--linker_list",
+			help ="""Linker PDB files listed ina signle text file in PWD""")
 
     parser.add_argument("-c",
                         "--cutoff",
@@ -66,7 +71,7 @@ def args():
     parser.add_argument("-ai",
                         "--alignment_iterations",
                         type=int,
-                        default=10,
+                        default=5,
                         help="""Number of iterations used for alignment""")
 
     parser.add_argument("-v",
@@ -78,15 +83,30 @@ def args():
 
     if args.cutoff < 0.0:
         print("Error: cut_off must be positive.")
-
+    if args.linker is not None and args.linker_list is not None:
+        raise Exception ("Linker and Linker List cannot both be defined")
+    elif args.linker is None and args.linker_list is None:
+        raise Exception ("Linker and Linker_List cannot both be empty")
+    if args.decoy is not None and args.decoy_list is not None:
+        raise Exception ("Decoy and Decoy List cannot both be defined")	
+    elif args.decoy is None and args.decoy_list is None: 
+        raise Exception ("Decoy and Decoy_List cannot both be empty")  
     if args.ternary == "default":
         print("Default name will be applied to ternary model")
     elif args.ternary == "specify":
         print("Specified name (decoy+linker) will be applied to ternary model")
-
+    if args.decoy_list is not None:
+        args.decoy=read_list_file(args.decoy_list)
+    if args.linker_list is not None:
+        args.linker=read_list_file(args.linker_list)
+    print (args)
     return args
+   
 
-
+def read_list_file(list_file):
+    with open (list_file,"r") as file:
+        file=[i for i in file.read().split("\n") if i!= "" ]
+        return file 
 def read_atom_file(file):
     """Read file with atoms label
 

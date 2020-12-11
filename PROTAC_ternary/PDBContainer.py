@@ -150,6 +150,7 @@ class PDBContainer:
         ref_dummy_atom_ids = []
         ref_atom_ids = []
 
+
         for i, atom in enumerate(ref_atoms):
             if len(atom) > 1:
                 coords = reference.get_coordinates(atom)
