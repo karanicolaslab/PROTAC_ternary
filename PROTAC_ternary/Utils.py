@@ -80,7 +80,6 @@ def args():
                         version="Version 1.0")
 
     args = parser.parse_args()
-    print (args)
 
     if args.cutoff < 0.0:
         print("Error: cut_off must be positive.")
