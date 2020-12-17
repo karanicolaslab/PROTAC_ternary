@@ -71,62 +71,71 @@ $ python ternary_model_prediction.py -la linker_atom_list.txt \
                                      -wd decoy_atom_delete.txt \
                                      -t default \
                                      -r rmsd.txt
-                                     
 ```
 
 ## More information on ternary model predition
-`$ python ternary_model_prediction.py -h`
+```python ternary_model_prediction.py -h```
 
-##Modify generated ternary models for Rosetta minimization
+## Modify generated ternary models for Rosetta minimization
 This section will ensure consistent atom labeling of ternary complexes for use of a single descriptive params file for minimization with Rosetta
 
 The script requires:
-1) The path to obabel be defined: $export BABEL=/path/to/openbabel/2.4.1/bin/obabel
-2) The path to Rosetta molfile_to_params.py be defined: $export MOL2PARAMS=/path/to/Rosetta/main/source/scripts/python/public/molfile_to_params.py
+1) The path to obabel be defined: 
+```export BABEL=/path/to/openbabel/2.4.1/bin/obabel```
+2) The path to Rosetta molfile_to_params.py be defined:
+```export MOL2PARAMS=/path/to/Rosetta/main/source/scripts/python/public/molfile_to_params.py```
 3) An input list of ternary models 
 
-##Example Command 
-$python ternary_modify.py -s pdb_list.txt
+Example Command 
 
-##Modified Ternary model outputs
+```python ternary_modify.py -s pdb_list.txt```
+
+## Modified Ternary model outputs
 Note: Only ternary PROTAC models with acceptable bond connectivity properties (angle, length) defined by Rosetta will pass this step
 
 1) Successfully converted ternary PROTAC models will be appended with _mod.pdb
 2) Ternary atom labels will be converted to TRN
-3) Generate a single params file (from one of the top scoring ternary models, see RMSD output file) to be compatible with this new atom labeling; 
-	$/path/to/Rosetta/main/source/scripts/python/public/molfile_to_params.py TRN.mol2 -n TRN
-		# The ternary PROTAC pdb must first be converted to a mol2 file with obabel
-		# The flag -n TRN is critical during params file generation to maintain consistency with the output from ternary_modify.py
+3) Generate a single params file (from one of the top scoring ternary models, see RMSD output file) to be compatible with this new atom labeling:
 
-##Minimize the ternary models
+```/path/to/Rosetta/main/source/scripts/python/public/molfile_to_params.py TRN.mol2 -n TRN```
+
+The ternary PROTAC pdb must first be converted to a mol2 file with obabel
+The flag -n TRN is critical during params file generation to maintain consistency with the output from ternary_modify.py
+
+## Minimize the ternary models
 
 Example Command
-$ /path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease -database /path/to/Rosetta/main/database
-								-s ternary_model_mod.pdb
-								-extra_res_fa TRN.params
+
+```/path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease \
+						-database /path/to/Rosetta/main/database 
+						-s ternary_model_mod.pdb
+						-extra_res_fa TRN.params
 								-jump_all
 								-out:file:scorefile score.sc
+```
 
-##Calculating the FFC
-First, you will need gather the interface scores from the ternary minimiztion output, run the below command;
-$ python ppi_ternary_scores.py
+## Calculating the FFC
+First, you will need gather the interface scores from the ternary minimiztion output, run the below command:
+```python ppi_ternary_scores.py```
+
 This will ask you for your the name of your output file name (i.e., score.sc  - from above)
 
-Next, you will need to minimize the skeleton (docked decoys prior to ternary model prediction) using; 
-$ /path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease -database /path/to/Rosetta/main/database
+Next, you will need to minimize the skeleton (docked decoys prior to ternary model prediction) using:
+```$ /path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease -database /path/to/Rosetta/main/database
                                                                 -s ternary_model_mod.pdb
                                                                 -extra_res_fa ligand1.params ligand2_params
                                                                 -jump_all
                                                                 -out:file:scorefile score.sc
  		#the -extra_res_fa ligand1.params ligand2_params will be the same as the initial docking submission at the beginning of the pipeline
+```
 
 Now, calculate the median interface score the minimized skeletons using;
-$python ppi_skeleton_median.py
+```python ppi_skeleton_median.py```
 
 		#the output will be skeleton_median.txt, which contains a summary of minimization scores for the decoy skeletons
 
 Finally, calculate the ffc using;
-$python ffc_calculator.py 
+```python ffc_calculator.py```
 		#this script requires the inputs of
 			1) the csv output file from ppi_ternary_scores.py (ppi_ternary_scores.csv)
 			2) number of docked decoys: 5,000 (benchmark from paper)
