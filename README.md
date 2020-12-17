@@ -40,7 +40,7 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 
 4) `decoy_atom_delete.txt` & `linker_atom_delte.txt`: atoms which are repeated in decoy / conformer and need to be deleted (see `decoy_atom_delete.txt` & `linker_atom_delte.txt` as examples in Example folder).
 
-5) the flags -d/-dl and -l/-ll cannot not both be used in a single command for decoy or linker files; a single decoy can be modeling against a list of linker conformers (-d/-ll) or a list of decoys can be modeled against single linker conformer (-dl/-l) or single decoy and linker (-d/-l) or lists of both (-dl/-ll) can be modeled
+5) the flags `-d`/`-dl` and `-l`/`-ll` cannot not both be used in a single command for decoy or linker files; a single decoy can be modeling against a list of linker conformers (`-d`/`-ll`) or a list of decoys can be modeled against single linker conformer (`-dl`/`-l`) or single decoy and linker (`-d`/`-l`) or lists of both (`-dl`/`-ll`) can be modeled
 
 ## Flags information
 ```
@@ -74,6 +74,7 @@ $ python ternary_model_prediction.py -la linker_atom_list.txt \
 ```
 
 ## More information on ternary model predition
+
 ```python ternary_model_prediction.py -h```
 
 ## Modify generated ternary models for Rosetta minimization
@@ -121,6 +122,7 @@ Example Command
 
 ## Calculating the FFC
 First, you will need gather the interface scores from the ternary minimiztion output, run the below command:
+
 ```python ppi_ternary_scores.py```
 
 This will ask you for your the name of your output file name (i.e., `score.sc`  - from above)
@@ -138,7 +140,8 @@ Next, you will need to minimize the skeleton (docked decoys prior to ternary mod
 The `-extra_res_fa ligand1.params ligand2_params` will be the same as the initial docking submission at the beginning of the pipeline
 
 
-Now, calculate the median interface score the minimized skeletons using;
+Now, calculate the median interface score the minimized skeletons using:
+
 ```python ppi_skeleton_median.py```
 
 The output will be `skeleton_median.txt`, which contains a summary of minimization scores for the decoy skeletons
