@@ -60,7 +60,7 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 
 For a visual representation of the linker/decoy atom and delete lists, see: 
 
-![alt text](https://github.com/karanicolaslab/PROTAC_ternary/raw/Miller_update/Atom_list_Figure.png)
+![alt text](https://github.com/karanicolaslab/PROTAC_ternary/raw/master/Atom_list_Figure.png)
  
 ## Example command
 ```
