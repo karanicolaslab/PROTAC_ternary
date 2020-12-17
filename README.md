@@ -57,7 +57,10 @@ $ ./Rosetta/main/source/bin/docking_protocol.linuxgccelease –database path/to/
 -t/--ternary                  # output ternary structure, if not applied, no ternary structure will be generated, if applied, choose either default (the output would be ternary0.pdb, etc.) or specify (the output would be decoy_linker.pdb,, etc)
 -ai/--alignment_iterations    # number of rounds for alignment (default is set to 5 iterations, shows high convergence in most cases)
 ```
-`For a visual representation of the linker/decoy atom and delete lists, see ![alt text](https://github.com/karanicolaslab/PROTAC_ternary/Atom_list_Figure.tif?raw=true)`
+
+For a visual representation of the linker/decoy atom and delete lists, see: 
+
+![alt text](https://github.com/karanicolaslab/PROTAC_ternary/raw/Miller_update/Atom_list_Figure.png)
  
 ## Example command
 ```
