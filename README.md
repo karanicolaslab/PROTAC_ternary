@@ -81,9 +81,13 @@ This section will ensure consistent atom labeling of ternary complexes for use o
 
 The script requires:
 1) The path to obabel be defined: 
+
 ```export BABEL=/path/to/openbabel/2.4.1/bin/obabel```
+
 2) The path to Rosetta molfile_to_params.py be defined:
+
 ```export MOL2PARAMS=/path/to/Rosetta/main/source/scripts/python/public/molfile_to_params.py```
+
 3) An input list of ternary models 
 
 Example Command 
@@ -106,43 +110,49 @@ The flag -n TRN is critical during params file generation to maintain consistenc
 
 Example Command
 
-```/path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease \
-						-database /path/to/Rosetta/main/database 
-						-s ternary_model_mod.pdb
-						-extra_res_fa TRN.params
-								-jump_all
-								-out:file:scorefile score.sc
+```
+/path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease \
+						-database /path/to/Rosetta/main/database \
+						-s ternary_model_mod.pdb \
+						-extra_res_fa TRN.params \
+						-jump_all \
+						-out:file:scorefile score.sc
 ```
 
 ## Calculating the FFC
 First, you will need gather the interface scores from the ternary minimiztion output, run the below command:
 ```python ppi_ternary_scores.py```
 
-This will ask you for your the name of your output file name (i.e., score.sc  - from above)
+This will ask you for your the name of your output file name (i.e., `score.sc`  - from above)
 
 Next, you will need to minimize the skeleton (docked decoys prior to ternary model prediction) using:
-```$ /path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease -database /path/to/Rosetta/main/database
-                                                                -s ternary_model_mod.pdb
-                                                                -extra_res_fa ligand1.params ligand2_params
-                                                                -jump_all
-                                                                -out:file:scorefile score.sc
- 		#the -extra_res_fa ligand1.params ligand2_params will be the same as the initial docking submission at the beginning of the pipeline
 ```
+/path/to/Rosetta/main/source/bin/minimize_ppi.linuxgccrelease \
+						-database /path/to/Rosetta/main/database \
+						-s ternary_model_mod.pdb \
+						-extra_res_fa ligand1.params ligand2_params \
+						-jump_all \
+						-out:file:scorefile score.sc
+```
+
+The `-extra_res_fa ligand1.params ligand2_params` will be the same as the initial docking submission at the beginning of the pipeline
+
 
 Now, calculate the median interface score the minimized skeletons using;
 ```python ppi_skeleton_median.py```
 
-		#the output will be skeleton_median.txt, which contains a summary of minimization scores for the decoy skeletons
+The output will be `skeleton_median.txt`, which contains a summary of minimization scores for the decoy skeletons
 
 Finally, calculate the ffc using;
 ```python ffc_calculator.py```
-		#this script requires the inputs of
-			1) the csv output file from ppi_ternary_scores.py (ppi_ternary_scores.csv)
-			2) number of docked decoys: 5,000 (benchmark from paper)
-			3) number of ligand conformations: 1,000 (benchmark from paper)
-			4) the median decoy skeleton interface energy (for example, -61.71495)
+This script requires the inputs of
+  1) the csv output file from ppi_ternary_scores.py (ppi_ternary_scores.csv)
+  2) number of docked decoys: `5,000` (benchmark from paper)
+  3) number of ligand conformations: `1,000` (benchmark from paper)
+  4) the median decoy skeleton interface energy (for example, `-61.71495`)
 		
-	#this script will print the ffc value, the number of ternary models that passed the energy filter, and txt file with the names/scores of each ternary model that passed this filter 
+This script will print the ffc value, the number of ternary models that passed the energy filter, and txt file with the names/scores of each ternary model that passed this filter 
+
 
 
 
