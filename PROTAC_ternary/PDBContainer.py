@@ -15,7 +15,7 @@ class PDBContainer:
         structure (rdkit.Chem.rdchem.Mol): RDKit container for structure
     """
 
-    def __init__(self, file):
+    def __init__(self, file, id_format):
         """Inititializing of container
 
         Note: we disabled sanitizing step as well as removing of hydrogen atoms
@@ -25,6 +25,7 @@ class PDBContainer:
         Args:
             file (str): File name of input structure
         """
+        self.id_format = id_format
         self.atom_ids = {}
         self.structure = Chem.rdmolfiles.MolFromPDBFile(file,
                                                         sanitize=False,
@@ -45,6 +46,11 @@ class PDBContainer:
             if pdb_info is not None:
                 atom_name = pdb_info.GetName().strip()
                 resi_name = pdb_info.GetResidueName().strip()
+
+                if self.id_format == 3:
+                    resi_name = str(pdb_info.GetResidueNumber()) + " " + resi_name
+                    resi_name = pdb_info.GetChainId().strip() + " " + resi_name
+
                 key = f"{resi_name} {atom_name}"
                 self.atom_ids[key] = i
 
@@ -87,6 +93,11 @@ class PDBContainer:
         pdb_info = a.GetPDBResidueInfo()
         atom_name = pdb_info.GetName().strip()
         resi_name = pdb_info.GetResidueName().strip()
+
+        if self.id_format == 3:
+            resi_name = str(pdb_info.GetResidueNumber()) + " " + resi_name
+            resi_name = pdb_info.GetChainId().strip() + " " + resi_name
+
         key = f"{resi_name} {atom_name}"
 
         self.update_atom_cache()
@@ -271,7 +282,13 @@ class PDBContainer:
         for i, a in enumerate(self.structure.GetAtoms()):
             pdb_info = a.GetPDBResidueInfo()
 
-            if pdb_info.GetResidueName().strip() == old_resn:
+            resi_name = pdb_info.GetResidueName().strip()
+
+            if self.id_format == 3:
+                resi_name = str(pdb_info.GetResidueNumber()) + " " + resi_name
+                resi_name = pdb_info.GetChainId().strip() + " " + resi_name
+
+            if resi_name == old_resn:
                 pdb_info.SetResidueName(new_resn)
                 if new_chain:
                     pdb_info.SetChainId(new_chain)

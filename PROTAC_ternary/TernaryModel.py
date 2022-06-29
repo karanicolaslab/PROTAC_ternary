@@ -31,8 +31,12 @@ def make_ternary_complex(decoy_file,
         (float, PDBContainer): aligned and merged protein/
                                /warheads/linker structure
     """
-    decoy = PDBContainer(decoy_file)
-    linker = PDBContainer(linker_file)
+
+    decoy_atom_id_format = len(decoy_atoms[0][0].split(" ")) - 1
+    linker_atom_id_format = len(linker_atoms[0][0].split(" ")) - 1
+
+    decoy = PDBContainer(decoy_file, id_format=decoy_atom_id_format)
+    linker = PDBContainer(linker_file, id_format=linker_atom_id_format)
 
     rmsd = linker.align(decoy, 
                         targ_atoms=linker_atoms,
@@ -42,16 +46,18 @@ def make_ternary_complex(decoy_file,
     if len(delete_decoy_atoms) != 0:
         decoy.delete_atoms(delete_decoy_atoms)
 
+    decoy_resn = [ss[0:ss.rfind(" ")] for s in decoy_atoms for ss in s]
+    for resn in set(decoy_resn):
+        decoy.rename(resn, "LG1", "X", 1)
+
     if len(delete_linker_atoms) != 0:
         linker.delete_atoms(delete_linker_atoms)
 
+    linker_resn = [ss[0:ss.rfind(" ")] for s in linker_atoms for ss in s]
+    for resn in set(linker_resn):
+        linker.rename(resn, "LG1", "X", 1)
+
     decoy.merge(linker)
-#    decoy.delete_hetHs()
-
-    decoy_resn = [ss.split(" ")[0] for s in decoy_atoms for ss in s]
-    linker_resn = [ss.split(" ")[0] for s in linker_atoms for ss in s]
-
-    for resn in set(decoy_resn + linker_resn):
-        decoy.rename(resn, "LG1", "X", 1)
+    # decoy.delete_hetHs()
 
     return rmsd, decoy

@@ -2,13 +2,15 @@
 """
 
 from datetime import datetime
-startTime = datetime.now()
 from itertools import product
 from PROTAC_ternary import make_ternary_complex
 from PROTAC_ternary import args, read_atom_file
 
 
 if __name__ == "__main__":
+
+    startTime = datetime.now()
+
     # get input arguments and assign to variables
     arguments = args()
     decoys = arguments.decoy #replace with read file etc.
@@ -68,5 +70,4 @@ if __name__ == "__main__":
         fwr.close()
 
     print(str(ternary_idx) + " ternary model(s) has/have been generated.")
-
-print(datetime.now() - startTime)
+    print(datetime.now() - startTime)

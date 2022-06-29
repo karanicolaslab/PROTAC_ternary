@@ -1,0 +1,1 @@
+docking_decoy.pdb linker_conformer.pdb 0.2343709872196782

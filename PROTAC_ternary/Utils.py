@@ -107,6 +107,8 @@ def read_list_file(list_file):
     with open (list_file,"r") as file:
         file=[i for i in file.read().split("\n") if i!= "" ]
         return file 
+
+
 def read_atom_file(file):
     """Read file with atoms label
 
@@ -116,7 +118,14 @@ def read_atom_file(file):
     Returns:
         list: atoms labeled as <Residue Name> <Atom Name>
     """
+
     atoms = [line.rstrip('\n').split() for line in open(file, "r")]
-    atoms = [[a[0] + " " + aa for aa in a[1::]] for a in atoms]
+
+    if len(atoms[0][0]) == 1:
+        atoms = [[" ".join(a[:3]) + " " + aa for aa in a[3::]] for a in atoms]
+    elif len(atoms[0][0]) == 3:
+        atoms = [[a[0] + " " + aa for aa in a[1::]] for a in atoms]
+    else:
+        raise "Wrong format of atoms"
 
     return atoms
