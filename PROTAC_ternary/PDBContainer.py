@@ -270,7 +270,7 @@ class PDBContainer:
         self.delete_atoms(hetHs)
         self.update_atom_cache()
 
-    def rename(self, old_resn, new_resn, new_chain=None, new_resi=None):
+    def rename(self, old_resn, new_resn, new_chain=None, new_resi=None, het=False):
         """Replace residue name and number as well as chain label
 
         Args:
@@ -281,6 +281,9 @@ class PDBContainer:
         """
         for i, a in enumerate(self.structure.GetAtoms()):
             pdb_info = a.GetPDBResidueInfo()
+
+            if het:
+                pdb_info.SetIsHeteroAtom(True)
 
             resi_name = pdb_info.GetResidueName().strip()
 

@@ -48,14 +48,14 @@ def make_ternary_complex(decoy_file,
 
     decoy_resn = [ss[0:ss.rfind(" ")] for s in decoy_atoms for ss in s]
     for resn in set(decoy_resn):
-        decoy.rename(resn, "LG1", "X", 1)
+        decoy.rename(resn, "LG1", "X", 1, True)
 
     if len(delete_linker_atoms) != 0:
         linker.delete_atoms(delete_linker_atoms)
 
     linker_resn = [ss[0:ss.rfind(" ")] for s in linker_atoms for ss in s]
     for resn in set(linker_resn):
-        linker.rename(resn, "LG1", "X", 1)
+        linker.rename(resn, "LG1", "X", 1, True)
 
     decoy.merge(linker)
     # decoy.delete_hetHs()
